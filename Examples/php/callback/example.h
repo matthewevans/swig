@@ -5,7 +5,7 @@
 class Callback {
 public:
 	virtual ~Callback() { std::cout << "Callback::~Callback()" << std:: endl; }
-	virtual std::string run() { std::cout << "Callback::run()" << std::endl; }
+	virtual std::string run() { return "bar"}
 };
 
 
@@ -17,6 +17,6 @@ public:
 	~Caller() { delCallback(); }
 	void delCallback() { delete _callback; _callback = 0; }
 	void setCallback(Callback *cb) { delCallback(); _callback = cb; }
-	void call() { if (_callback) _callback->run(); }
+	std::string call() { if (_callback) return _callback->run(); }
 };
 
