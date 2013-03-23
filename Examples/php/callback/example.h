@@ -5,7 +5,7 @@
 class Callback {
 public:
 	virtual ~Callback() { std::cout << "Callback::~Callback()" << std:: endl; }
-	virtual void run() { std::cout << "Callback::run()" << std::endl; }
+	virtual std::string run() { std::cout << "Callback::run()" << std::endl; }
 };
 
 

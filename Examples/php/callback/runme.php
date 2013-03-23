@@ -8,7 +8,7 @@ require("example.php");
 
 class PhpCallback extends Callback {
   function run() {
-    print "PhpCallback.run()\n";
+    return "foo";
   }
 };
 
