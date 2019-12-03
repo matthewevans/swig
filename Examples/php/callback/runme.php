@@ -8,7 +8,7 @@ require("example.php");
 
 class PhpCallback extends Callback {
   function run() {
-    print "PhpCallback.run()\n";
+    return "foo";
   }
 };
 
@@ -25,7 +25,7 @@ print "----------------------------------------\n";
 $callback = new Callback();
 $callback->thisown = 0;
 $caller->setCallback($callback);
-$caller->call();
+echo $caller->call();
 $caller->delCallback();
 
 print "\n";
@@ -37,7 +37,7 @@ print "------------------------------------\n";
 $callback = new PhpCallback();
 $callback->thisown = 0;
 $caller->setCallback($callback);
-$caller->call();
+echo $caller->call();
 $caller->delCallback();
 
 # All done.
