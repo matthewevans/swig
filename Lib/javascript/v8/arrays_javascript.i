@@ -32,6 +32,9 @@
 %typemap(in, fragment=NAME) CTYPE[ANY] {
   if ($input->IsArray())
   {
+    v8::Isolate* isolate = args.GetIsolate();
+    v8::Local<v8::Context> context = isolate->GetCurrentContext(); // SWIGV8_CURRENT_CONTEXT();
+
     // Convert into Array
     v8::Local<v8::Array> array = v8::Local<v8::Array>::Cast($input);
 
@@ -42,7 +45,8 @@
     // Get each element from array
     for (int i = 0; i < length; i++)
     {
-      v8::Local<v8::Value> jsvalue = array->Get(i);
+      v8::Local<v8::Value> jsvalue = array->Get(context, i).ToLocalChecked();
+
       $*1_ltype temp;
 
       // Get primitive value from JSObject
